@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
 import 'package:flutter_webpage/Contact/contactmain.dart';
 import 'package:flutter_webpage/Download/downloadmain.dart';
+import 'package:flutter_webpage/Login/loginmain.dart';
+import 'package:flutter_webpage/Services/auth_services.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Services/auth_services.dart';
 import '../../custom_cursor.dart';
 import '../../main.dart';
 
@@ -31,6 +32,7 @@ class _LoggedInNavBarState extends State<LoggedInNavBar> {
 }
 
 class DesktopNavbar extends StatelessWidget {
+  final AuthServices _auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -157,13 +159,13 @@ class DesktopNavbar extends StatelessWidget {
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                    onPressed: () {
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => Login()),
-//                      );
-                      AuthService().signOut();
+                    onPressed: () async {
+                      await _auth.signOut();
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => LoginApp()));
                     },
+
+//    print('Logge
                     child: Text(
                       "Sign Out",
                       style: TextStyle(color: Colors.lightBlueAccent),

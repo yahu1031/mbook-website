@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webpage/Login/LoggedIn/loggedinmain.dart';
+import 'package:flutter_webpage/Services/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../Services/auth_services.dart';
@@ -13,6 +15,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final formKey = new GlobalKey<FormState>();
+  final AuthServices _auth = AuthServices();
 
   checkFields() {
     final form = formKey.currentState;
@@ -139,9 +142,53 @@ class _LoginState extends State<Login> {
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(25.0))),
-                              onPressed: () {
+                              onPressed: () async {
                                 if (checkFields()) {
-                                  AuthService().signIn(email, password);
+                                  if (formKey.currentState.validate()) {
+//                                    showLoadingDialog(context);
+                                    print("loading");
+                                    final User user =
+                                        await _auth.signInWithEmailAndPassword(
+                                      email,
+                                      password,
+                                    );
+                                    Navigator.pop(context);
+                                    if (email == null && password == null) {
+//                                      Dialogs.yesAbortDialog(context, kSorryString,
+//                                          "Please fill the credentials. Credentials must not be empty.");
+                                      print("fill form");
+                                    } else if (email == null) {
+//                                      Dialogs.yesAbortDialog(context, 'Register Number',
+//                                          "You are missing your Register number. please enter it.");
+                                      print("no reg");
+                                    } else if (email.length < 9) {
+//                                      Dialogs.yesAbortDialog(context, 'Register Number',
+//                                          'Your register number must be 9 characters.');
+                                      print("reg more than 9");
+                                    } else if (password == null) {
+//                                      Dialogs.yesAbortDialog(context, 'Password',
+//                                          "You are missing your password. please enter it.");
+                                      print("no password");
+                                    } else if (password.length < 6) {
+//                                      Dialogs.yesAbortDialog(context, 'Password',
+//                                          'Your password must be more than 6 chasracters.');
+                                      print("password more than 6");
+                                    } else if (user == null) {
+//                                      Dialogs.yesAbortDialog(context, kSorryString,
+//                                          "Your credentials did not match. Please try with Correct credentials.");
+                                      print("not match");
+                                    } else {
+//                                      Navigator.pushReplacementNamed(
+//                                          context, LoadingScreen.id,
+//                                          arguments: user);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LoggedInApp()),
+                                      );
+                                    }
+                                  }
                                 }
                               },
                               child: Text(
