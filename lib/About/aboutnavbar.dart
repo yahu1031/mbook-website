@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webpage/Download/downloadmain.dart';
 import 'package:flutter_webpage/Login/login.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,7 +58,12 @@ class DesktopNavbar extends StatelessWidget {
                 Container(
                   child: InkWell(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyApp(),
+                        ),
+                      );
                     },
                     child: CustomCursor(
                       cursorStyle: CustomCursor.pointer,
@@ -115,10 +121,10 @@ class DesktopNavbar extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('You clicked Download');
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => ContactApp()),
-//                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DownloadPage()),
+                      );
                     },
                     child: Text(
                       "Download",

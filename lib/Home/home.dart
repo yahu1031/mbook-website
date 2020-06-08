@@ -62,7 +62,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     CustomCursor(
                       cursorStyle: CustomCursor.pointer,
-                      child: MaterialButton(
+                      child: RaisedButton(
+                        elevation: 7.0,
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
@@ -89,11 +90,14 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Container(
-                height: 600.0,
-                child: Image.asset(
-                  Images.kImage,
-                  width: width,
-                  height: 600.0,
+                height: 750.0,
+                child: Hero(
+                  tag: 'mobile',
+                  child: Image.asset(
+                    Images.kImage,
+                    width: width,
+                    height: 750.0,
+                  ),
                 ),
               ),
             ),

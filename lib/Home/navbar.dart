@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webpage/Login/login.dart';
+import 'package:flutter_webpage/Download/downloadmain.dart';
+import 'package:flutter_webpage/Login/loginmain.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../About/aboutmain.dart';
@@ -121,10 +122,10 @@ class DesktopNavbar extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print('You clicked Download');
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => ContactApp()),
-//                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DownloadPage()),
+                      );
                     },
                     child: Text(
                       "Download",
@@ -151,7 +152,7 @@ class DesktopNavbar extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                     child: Text(
@@ -176,19 +177,11 @@ class MobileNavbar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Container(
         child: Column(children: <Widget>[
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyApp()),
-              );
-            },
-            child: CustomCursor(
-              cursorStyle: CustomCursor.pointer,
-              child: Image.asset(
-                Images.kLogo,
-                width: 50.0,
-              ),
+          CustomCursor(
+            cursorStyle: CustomCursor.pointer,
+            child: Image.asset(
+              Images.kLogo,
+              width: 150.0,
             ),
           ),
           Padding(

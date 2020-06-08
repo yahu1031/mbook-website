@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
+import 'package:flutter_webpage/Download/downloadmain.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,7 +48,7 @@ class DesktopNavbar extends StatelessWidget {
               child: CustomCursor(
                 cursorStyle: CustomCursor.pointer,
                 child: Image.asset(
-                  Images.kLogin,
+                  Images.kLogo,
                   width: 150.0,
                 ),
               ),
@@ -124,6 +125,28 @@ class DesktopNavbar extends StatelessWidget {
                 SizedBox(
                   width: 30,
                 ),
+                CustomCursor(
+                  cursorStyle: CustomCursor.pointer,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DownloadApp()),
+                      );
+                    },
+                    child: Text(
+                      "Download",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20.0,
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
                 Text(
                   "Login",
                   style: GoogleFonts.montserrat(
@@ -160,8 +183,8 @@ class MobileNavbar extends StatelessWidget {
             },
             child: CustomCursor(
               child: Image.asset(
-                "assets/logo_img.png",
-                width: 50.0,
+                Images.kLogo,
+                width: 150.0,
               ),
             ),
           ),

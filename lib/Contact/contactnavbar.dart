@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webpage/Download/downloadmain.dart';
+import 'package:flutter_webpage/Login/login.dart';
+import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../About/aboutmain.dart';
@@ -45,8 +48,8 @@ class DesktopNavbar extends StatelessWidget {
               child: CustomCursor(
                 cursorStyle: CustomCursor.pointer,
                 child: Image.asset(
-                  "assets/logo_img.png",
-                  width: 100.0,
+                  Images.kLogo,
+                  width: 150.0,
                 ),
               ),
             ),
@@ -110,12 +113,45 @@ class DesktopNavbar extends StatelessWidget {
                 ),
                 CustomCursor(
                   cursorStyle: CustomCursor.pointer,
-                  child: Text(
-                    "Login",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 20.0,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      print('You clicked Download');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DownloadPage()),
+                      );
+                    },
+                    child: Text(
+                      "Download",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20.0,
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                CustomCursor(
+                  cursorStyle: CustomCursor.pointer,
+                  child: MaterialButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Login()),
+                      );
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Colors.lightBlueAccent),
                     ),
                   ),
                 ),
@@ -144,8 +180,8 @@ class MobileNavbar extends StatelessWidget {
             },
             child: CustomCursor(
               child: Image.asset(
-                "assets/logo_img.png",
-                width: 50.0,
+                Images.kLogo,
+                width: 150.0,
               ),
             ),
           ),

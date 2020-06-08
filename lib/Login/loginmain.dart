@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webpage/Services/auth_services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'login.dart';
 import 'loginnavbar.dart';
-import 'package:firebase/firebase.dart' as fb;
 
-void main()
-{
-  assert((){
-    fb.initializeApp(
-        apiKey: "AIzaSyAQPULQs491mGz7xP9K1n6BnX5_wvQcbK4",
-        authDomain: "flutter-web-1031.firebaseapp.com",
-        databaseURL: "https://flutter-web-1031.firebaseio.com",
-        projectId: "flutter-web-1031",
-        storageBucket: "flutter-web-1031.appspot.com",
-        messagingSenderId: "14402995330",
-        appId: "1:14402995330:web:1e65ee8d018c8e8827609b",
-        measurementId: "G-50Y8SV7PES"
-    );
-  }());
-
+void main() {
   runApp(LoginApp());
 }
 
@@ -30,7 +18,7 @@ class LoginApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: "Montserrat",
       ),
-      home: LoginPage(),
+      home: AuthService().handleAuth(),
     );
   }
 }
@@ -39,22 +27,35 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: 905.0,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/background.png"),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0xff4facfe),
+                Color(0xff38f9d7),
+              ],
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               LoginNavbar(),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 20.0, horizontal: 40.0),
-                child: Login(),
+                padding: const EdgeInsets.all(50.0),
+                child: Column(
+                  children: [
+                    Login(),
+                    Text(
+                      'Made with 💚',
+                      style: GoogleFonts.montserrat(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),

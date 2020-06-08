@@ -7,6 +7,9 @@ class Images {
   static const String kLogin = 'assets/images/login.png';
   static const String kLogo = 'assets/images/logo.png';
   static const String kTeam = 'assets/images/team.png';
+  static const String kMailus = 'assets/images/mailus.png';
+  static const String kDownload = 'assets/images/download.png';
+  static const String kDownloadIcon = 'assets/images/download_icon.png';
 
   ///Helpers///
   static const String kMinnu = 'assets/helpers/minnu.jpg';
@@ -15,6 +18,14 @@ class Images {
   static const String kShankar = 'assets/helpers/shankar.jpg';
 }
 
+///Routes///
+const String HomeRoute = '/home';
+const String AboutRoute = '/about';
+const String ContactRoute = '/contact';
+const String DownloadRoute = '/downloads';
+const String LoginRoute = 'login';
+
+///Strings///
 const String kHelloText = 'Hello\nThere';
 const String kContent =
     'What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
@@ -23,3 +34,5 @@ const String kContent =
     'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
     ' It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, '
     'and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum';
+
+const String kDownloadText = 'Download';
