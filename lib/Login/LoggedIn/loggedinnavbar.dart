@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
 import 'package:flutter_webpage/Contact/contactmain.dart';
 import 'package:flutter_webpage/Download/downloadmain.dart';
-import 'package:flutter_webpage/Login/loginmain.dart';
 import 'package:flutter_webpage/Services/auth_services.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../custom_cursor.dart';
 import '../../main.dart';
+import '../loginmain.dart';
 
 class LoggedInNavBar extends StatefulWidget {
   @override
@@ -162,7 +162,7 @@ class DesktopNavbar extends StatelessWidget {
                     onPressed: () async {
                       await _auth.signOut();
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => LoginApp()));
+                          MaterialPageRoute(builder: (context) => LoginPage()));
                     },
 
 //    print('Logge
