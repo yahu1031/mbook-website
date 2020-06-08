@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'loggedin.dart';
 import 'loggedinnavbar.dart';
 
-void main() => runApp(DownloadApp());
+void main() => runApp(LoggedInApp());
 
-class DownloadApp extends StatelessWidget {
+class LoggedInApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Download',
-      home: DownloadPage(),
+      title: 'Logged In',
+      home: LoggedInPage(),
     );
   }
 }
 
-class DownloadPage extends StatelessWidget {
+class LoggedInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

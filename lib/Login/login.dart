@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Services/auth_services.dart';
 import '../constants.dart';
 import '../custom_cursor.dart';
 
@@ -12,18 +12,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _autoValidate = false;
-  String _regNo;
-  String _password;
+  final formKey = new GlobalKey<FormState>();
+
   checkFields() {
-    final form = _formKey.currentState;
+    final form = formKey.currentState;
     if (form.validate()) {
       return true;
     } else {
       return false;
     }
   }
+
+  String email, password;
 
   List<Widget> pageChildren(double width) {
     return <Widget>[
@@ -61,8 +61,7 @@ class _LoginState extends State<Login> {
               ),
               Center(
                 child: Form(
-                  key: _formKey,
-                  autovalidate: _autoValidate,
+                  key: formKey,
                   child: Container(
                     width: 300.0,
                     child: Padding(
@@ -76,15 +75,6 @@ class _LoginState extends State<Login> {
                           CustomCursor(
                             cursorStyle: CustomCursor.text,
                             child: TextFormField(
-                              validator: (value) => value.isEmpty
-                                  ? 'Register Number is required'
-                                  : validateEmail(value.trim()),
-                              onSaved: (String mail) {
-                                _regNo = mail;
-                              },
-                              onChanged: (value) {
-                                this._regNo = value;
-                              },
                               decoration: InputDecoration(
                                 labelText: 'Register Number',
                                 labelStyle: GoogleFonts.notoSans(
@@ -102,7 +92,12 @@ class _LoginState extends State<Login> {
                                       BorderSide(color: Colors.red, width: 3.0),
                                 ),
                               ),
-                              keyboardType: TextInputType.number,
+                              validator: (value) => value.isEmpty
+                                  ? 'Register number is required'
+                                  : null,
+                              onChanged: (value) {
+                                this.email = value;
+                              },
                             ),
                           ),
                           SizedBox(height: 30.0),
@@ -110,9 +105,6 @@ class _LoginState extends State<Login> {
                             cursorStyle: CustomCursor.text,
                             child: TextFormField(
                               obscureText: true,
-                              onSaved: (String password) {
-                                _password = password;
-                              },
                               decoration: InputDecoration(
                                 labelText: 'Password',
                                 labelStyle: GoogleFonts.notoSans(
@@ -130,6 +122,11 @@ class _LoginState extends State<Login> {
                                       BorderSide(color: Colors.red, width: 3.0),
                                 ),
                               ),
+                              validator: (value) =>
+                                  value.isEmpty ? 'Password is required' : null,
+                              onChanged: (value) {
+                                this.password = value;
+                              },
                             ),
                           ),
                           SizedBox(
@@ -137,13 +134,15 @@ class _LoginState extends State<Login> {
                           ),
                           CustomCursor(
                             cursorStyle: CustomCursor.pointer,
-                            child: MaterialButton(
+                            child: RaisedButton(
                               color: Colors.lightBlueAccent,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(25.0))),
                               onPressed: () {
-                                print('User');
+                                if (checkFields()) {
+                                  AuthService().signIn(email, password);
+                                }
                               },
                               child: Text(
                                 "Login",
@@ -156,6 +155,95 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
+//                child: Form(
+//                    key: formKey,
+//                    child: Column(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      children: <Widget>[
+//                        Padding(
+//                            padding: EdgeInsets.only(
+//                                left: 25.0,
+//                                right: 25.0,
+//                                top: 20.0,
+//                                bottom: 5.0),
+//                            child: Container(
+//                              height: 50.0,
+//                              child: TextFormField(
+//                                decoration: InputDecoration(
+//                                  labelText: 'Register Number',
+//                                  labelStyle: GoogleFonts.notoSans(
+//                                    fontWeight: FontWeight.w500,
+//                                    color: Colors.lightBlueAccent,
+//                                  ),
+//                                  focusedBorder: OutlineInputBorder(
+//                                    borderSide: BorderSide(
+//                                        color: Colors.lightBlueAccent,
+//                                        width: 2.0),
+//                                    borderRadius: BorderRadius.circular(15.0),
+//                                  ),
+//                                  errorBorder: OutlineInputBorder(
+//                                    borderSide: BorderSide(
+//                                        color: Colors.red, width: 3.0),
+//                                  ),
+//                                ),
+//                                validator: (value) => value.isEmpty
+//                                    ? 'Register number is required'
+//                                    : null,
+//                                onChanged: (value) {
+//                                  this.email = value;
+//                                },
+//                              ),
+//                            )),
+//                        Padding(
+//                            padding: EdgeInsets.only(
+//                                left: 25.0,
+//                                right: 25.0,
+//                                top: 20.0,
+//                                bottom: 5.0),
+//                            child: Container(
+//                              height: 50.0,
+//                              child: TextFormField(
+//                                obscureText: true,
+//                                decoration: InputDecoration(
+//                                  labelText: 'Password',
+//                                  labelStyle: GoogleFonts.notoSans(
+//                                    fontWeight: FontWeight.w500,
+//                                    color: Colors.lightBlueAccent,
+//                                  ),
+//                                  focusedBorder: OutlineInputBorder(
+//                                    borderSide: BorderSide(
+//                                        color: Colors.lightBlueAccent,
+//                                        width: 2.0),
+//                                    borderRadius: BorderRadius.circular(15.0),
+//                                  ),
+//                                  errorBorder: OutlineInputBorder(
+//                                    borderSide: BorderSide(
+//                                        color: Colors.red, width: 3.0),
+//                                  ),
+//                                ),
+//                                validator: (value) => value.isEmpty
+//                                    ? 'Password is required'
+//                                    : null,
+//                                onChanged: (value) {
+//                                  this.password = value;
+//                                },
+//                              ),
+//                            )),
+//                        InkWell(
+//                            onTap: () {
+//                              if (checkFields()) {
+//                                AuthService().signIn(email, password);
+//                              }
+//                            },
+//                            child: Container(
+//                                height: 40.0,
+//                                width: 100.0,
+//                                decoration: BoxDecoration(
+//                                  color: Colors.green.withOpacity(0.2),
+//                                ),
+//                                child: Center(child: Text('Sign in'))))
+//                      ],
+//                    )),
               ),
             ],
           ),

@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
 import 'package:flutter_webpage/Contact/contactmain.dart';
 import 'package:flutter_webpage/Download/downloadmain.dart';
-import 'package:flutter_webpage/Login/login.dart';
-import 'package:flutter_webpage/Services/auth_services.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Services/auth_services.dart';
 import '../../custom_cursor.dart';
 import '../../main.dart';
 
@@ -159,11 +158,11 @@ class DesktopNavbar extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     onPressed: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(builder: (context) => Login()),
+//                      );
                       AuthService().signOut();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
                     },
                     child: Text(
                       "Sign Out",

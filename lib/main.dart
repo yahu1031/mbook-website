@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'About/about.dart';
 import 'Home/home.dart';
 import 'Home/navbar.dart';
 
@@ -38,11 +37,12 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Navbar(),
-              HomePage(),
-              About(),
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: HomePage(),
+              )
             ],
           ),
         ),

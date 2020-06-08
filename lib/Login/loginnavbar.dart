@@ -147,12 +147,25 @@ class DesktopNavbar extends StatelessWidget {
                 SizedBox(
                   width: 30,
                 ),
-                Text(
-                  "Login",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 25.0,
-                    fontStyle: FontStyle.normal,
-                    color: Colors.black,
+                CustomCursor(
+                  cursorStyle: CustomCursor.pointer,
+                  child: MaterialButton(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    onPressed: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(builder: (context) => LoginPage()),
+//                      );
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(color: Colors.lightBlueAccent),
+                    ),
                   ),
                 ),
                 SizedBox(

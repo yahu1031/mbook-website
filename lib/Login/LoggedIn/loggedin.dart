@@ -8,6 +8,10 @@ class LoggedIn extends StatefulWidget {
 class _LoggedInState extends State<LoggedIn> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: RaisedButton(
+        onPressed: () {},
+      ),
+    );
   }
 }
