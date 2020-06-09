@@ -1,22 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
-import 'package:flutter_webpage/Contact/contactmain.dart';
 import 'package:flutter_webpage/Download/downloadmain.dart';
-import 'package:flutter_webpage/Services/auth_services.dart';
+import 'package:flutter_webpage/User/Signup/signupmain.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Contact/contactmain.dart';
 import '../../custom_cursor.dart';
 import '../../main.dart';
-import '../loginmain.dart';
 
-class LoggedInNavBar extends StatefulWidget {
+class LoginNavbar extends StatefulWidget {
   @override
-  _LoggedInNavBarState createState() => _LoggedInNavBarState();
+  _LoginNavbarState createState() => _LoginNavbarState();
 }
 
-class _LoggedInNavBarState extends State<LoggedInNavBar> {
+class _LoginNavbarState extends State<LoginNavbar> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -32,7 +31,6 @@ class _LoggedInNavBarState extends State<LoggedInNavBar> {
 }
 
 class DesktopNavbar extends StatelessWidget {
-  final AuthServices _auth = AuthServices();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,7 +43,7 @@ class DesktopNavbar extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
+                  MaterialPageRoute(builder: (context) => MyHomePage()),
                 );
               },
               child: CustomCursor(
@@ -63,9 +61,7 @@ class DesktopNavbar extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => MyApp(),
-                        ),
+                        MaterialPageRoute(builder: (context) => MyHomePage()),
                       );
                     },
                     child: CustomCursor(
@@ -84,20 +80,23 @@ class DesktopNavbar extends StatelessWidget {
                 SizedBox(
                   width: 30,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AboutApp()),
-                    );
-                  },
-                  child: Container(
-                    child: Text(
-                      "About Us",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.normal,
-                        color: Colors.white,
+                Container(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutApp()),
+                      );
+                    },
+                    child: CustomCursor(
+                      cursorStyle: CustomCursor.pointer,
+                      child: Text(
+                        "About Us",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.normal,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -131,10 +130,9 @@ class DesktopNavbar extends StatelessWidget {
                   cursorStyle: CustomCursor.pointer,
                   child: InkWell(
                     onTap: () {
-                      print('You clicked Download');
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => DownloadPage()),
+                        MaterialPageRoute(builder: (context) => DownloadApp()),
                       );
                     },
                     child: Text(
@@ -150,27 +148,29 @@ class DesktopNavbar extends StatelessWidget {
                 SizedBox(
                   width: 30,
                 ),
-                SizedBox(
-                  width: 30,
-                ),
                 CustomCursor(
                   cursorStyle: CustomCursor.pointer,
                   child: MaterialButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                    onPressed: () async {
-                      await _auth.signOut();
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupPage()),
+                      );
                     },
-
-//    print('Logge
                     child: Text(
-                      "Sign Out",
+                      "Sign Up",
                       style: TextStyle(color: Colors.lightBlueAccent),
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: 30,
                 ),
               ],
             )
@@ -192,7 +192,7 @@ class MobileNavbar extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyApp()),
+                MaterialPageRoute(builder: (context) => MyHomePage()),
               );
             },
             child: CustomCursor(
@@ -211,7 +211,7 @@ class MobileNavbar extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MyApp()),
+                      MaterialPageRoute(builder: (context) => MyHomePage()),
                     );
                   },
                   child: CustomCursor(
@@ -225,18 +225,18 @@ class MobileNavbar extends StatelessWidget {
                 SizedBox(
                   width: 30,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AboutApp()),
-                    );
-                  },
-                  child: CustomCursor(
-                    cursorStyle: CustomCursor.pointer,
+                CustomCursor(
+                  cursorStyle: CustomCursor.pointer,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutApp()),
+                      );
+                    },
                     child: Text(
                       "About Us",
-                      style: TextStyle(color: Colors.black, fontSize: 20.0),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

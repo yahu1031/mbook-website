@@ -1,28 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import 'login.dart';
-import 'loginnavbar.dart';
+import 'package:flutter_webpage/User/Signup/signup.dart';
+import 'package:flutter_webpage/User/Signup/signupnavbar.dart';
 
 void main() {
-  runApp(LoginApp());
+  runApp(MyApp());
 }
 
-class LoginApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Home',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: "Montserrat",
-      ),
-      home: Login(),
+      debugShowCheckedModeBanner: false,
+      title: 'M Books',
+      home: SignupPage(),
     );
   }
 }
 
-class LoginPage extends StatelessWidget {
+class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +37,10 @@ class LoginPage extends StatelessWidget {
           ),
           child: Column(
             children: <Widget>[
-              LoginNavbar(),
+              SignupNavbar(),
               Padding(
                 padding: const EdgeInsets.all(50.0),
-                child: Column(
-                  children: [
-                    Login(),
-                    Text(
-                      'Made with 💚',
-                      style: GoogleFonts.montserrat(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
+                child: SignUp(),
               )
             ],
           ),

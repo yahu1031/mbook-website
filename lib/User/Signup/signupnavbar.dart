@@ -2,19 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webpage/About/aboutmain.dart';
 import 'package:flutter_webpage/Download/downloadmain.dart';
+import 'package:flutter_webpage/User/Login/loginmain.dart';
 import 'package:flutter_webpage/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Contact/contactmain.dart';
-import '../custom_cursor.dart';
-import '../main.dart';
+import '../../Contact/contactmain.dart';
+import '../../custom_cursor.dart';
+import '../../main.dart';
 
-class LoginNavbar extends StatefulWidget {
+class SignupNavbar extends StatefulWidget {
   @override
-  _LoginNavbarState createState() => _LoginNavbarState();
+  _SignupNavbarState createState() => _SignupNavbarState();
 }
 
-class _LoginNavbarState extends State<LoginNavbar> {
+class _SignupNavbarState extends State<SignupNavbar> {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -157,13 +158,13 @@ class DesktopNavbar extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => LoginPage()),
-//                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
                     },
                     child: Text(
-                      "Sign Up",
+                      "Login",
                       style: TextStyle(color: Colors.lightBlueAccent),
                     ),
                   ),

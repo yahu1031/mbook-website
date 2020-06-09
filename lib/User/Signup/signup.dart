@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webpage/Login/LoggedIn/loggedinmain.dart';
+import 'package:flutter_webpage/Services/auth_services.dart';
 import 'package:flutter_webpage/Services/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Services/auth_services.dart';
-import '../constants.dart';
-import '../custom_cursor.dart';
+import '../../Services/auth_services.dart';
+import '../../constants.dart';
+import '../../custom_cursor.dart';
+import '../Login/LoggedIn/loggedinmain.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  SignUp({Key key}) : super(key: key);
   @override
-  _LoginState createState() => _LoginState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
   final formKey = new GlobalKey<FormState>();
   final AuthServices _auth = AuthServices();
 
@@ -47,7 +48,7 @@ class _LoginState extends State<Login> {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                          text: 'Login ',
+                          text: 'SignUp ',
                           style: GoogleFonts.montserrat(
                               fontSize: 70.0,
                               color: Colors.black,
